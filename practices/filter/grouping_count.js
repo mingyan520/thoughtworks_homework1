@@ -4,15 +4,18 @@ function grouping_count(collection) {
 
   //在这里写入代码
   let result = {};
+  let arr =[];
   for(var i = 0; i < collection.length; i++){
-    for(var j = 0; j < result.length ; j++){
-      if(collection[i] !== result[j].key){
-        result[j].key = collection[i];
-        result[j].value = 1;
-      }else{
-        result[j].value +=1;
-      }
+    if(!arr[collection[i]]){
+      arr[collection[i]] = {};
+      arr[collection[i]].key = collection[i];
+      arr[collection[i]].value = 1;
+    }else{
+      arr[collection[i]].value++;
     }
+  }
+  for(var i in arr){
+    result[arr[i].key]=arr[i].value
   }
   return result;
 }
